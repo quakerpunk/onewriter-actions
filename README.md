@@ -1,0 +1,1 @@
+A repo for actions for the iOS text editor. Most are from the [Action Directory]( http://1writerapp.com/actiondir), some have been tweaked. 
