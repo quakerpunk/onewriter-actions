@@ -5,8 +5,7 @@ const require = (moduleName) => {
     },
     (response, err) => {
       if (err) {
-        let errorText = JSON.stringify(err);
-        ui.alert(errorText, "Error from require module.");
+        ui.alert(`Could not download ${moduleName} from unpkg.com`);
       }
       if (response && response.responseText.startsWith("Cannot find package")) {
         ui.alert(`Could not find ${moduleName} at unpkg.com`);
