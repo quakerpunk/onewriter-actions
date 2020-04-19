@@ -22,4 +22,5 @@ const process = {
 };
 
 const writeGood = grabWriteGood();
-ui.alert(writeGood);
+let suggestions = writeGood("So the cat was stolen.");
+ui.alert(JSON.stringify(suggestions));
