@@ -716,7 +716,8 @@ $jscomp.polyfill(
 // START 1WRITER IMPLEMENTATION
 let suggestions = writeGood("So the cat was stolen.");
 suggestions.forEach((suggestion) => {
-  ui.input("Suggestion", null, "Here is a suggestion.", null, (value) => {
+  let roughText = editor.getTextInRange(suggestion.index, suggestion.offset);
+  ui.input(suggestion.suggestion, null, roughText, null, (value) => {
     if (value) {
       return;
     }
