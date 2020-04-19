@@ -1,33 +1,17 @@
-const debug = false;
-const require = (moduleName) => {
+const grabWriteGood = () => {
   http.request(
     {
-      url: `https://unpkg.com/${moduleName}`,
+      url: "https://unpkg.com/write-good@1.0.2/write-good.js",
     },
     (data, err) => {
-      if (err && err[0] == 302) {
-        require(data.headers.location);
-      }
       if (err && err[0] == 404) {
         ui.alert(`Could not find ${moduleName} at unpkg.com`);
       }
-      if (data && data.responseText.startsWith("Cannot find package")) {
-        ui.alert(`Could not find ${moduleName} at unpkg.com`);
+      if (data) {
+        return data.responseText;
       }
     }
   );
-
-  // Suppose the module tries to set module.exports.
-  // Well, we can't have that.
-  let module = {};
-  if (module.exports) return module.exports;
-
-  if (debug) {
-    if (data) {
-      ui.alert(JSON.stringify(data));
-    }
-    ui.alert(JSON.stringify(this));
-  }
 };
 
 // Make those NodeJS modules behave.
@@ -37,4 +21,5 @@ const process = {
   },
 };
 
-let writeGood = require("write-good");
+const writeGood = grabWriteGood();
+ui.alert(writeGood);
