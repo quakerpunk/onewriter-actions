@@ -8,7 +8,7 @@ const grabWriteGood = () => {
         ui.alert(`Could not find ${moduleName} at unpkg.com`);
       }
       if (data) {
-        eval(data.responseText);
+        eval(data);
       }
     }
   );
