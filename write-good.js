@@ -8,7 +8,7 @@ const grabWriteGood = () => {
         ui.alert(`Could not find ${moduleName} at unpkg.com`);
       }
       if (data) {
-        return data.responseText;
+        eval(data.responseText);
       }
     }
   );
@@ -21,6 +21,6 @@ const process = {
   },
 };
 
-const writeGood = grabWriteGood();
+grabWriteGood();
 let suggestions = writeGood("So the cat was stolen.");
 ui.alert(JSON.stringify(suggestions));
