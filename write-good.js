@@ -4,11 +4,14 @@ const require = (moduleName) => {
     {
       url: `https://unpkg.com/${moduleName}`,
     },
-    (response, err) => {
+    (data, err) => {
+      if (err && err[0] == 302) {
+        require(data.headers.location);
+      }
       if (err && err[0] == 404) {
         ui.alert(`Could not find ${moduleName} at unpkg.com`);
       }
-      if (response && response.responseText.startsWith("Cannot find package")) {
+      if (data && data.responseText.startsWith("Cannot find package")) {
         ui.alert(`Could not find ${moduleName} at unpkg.com`);
       }
     }
@@ -20,8 +23,8 @@ const require = (moduleName) => {
   if (module.exports) return module.exports;
 
   if (debug) {
-    if (response) {
-      ui.alert(JSON.stringify(response));
+    if (data) {
+      ui.alert(JSON.stringify(data));
     }
     ui.alert(JSON.stringify(this));
   }
