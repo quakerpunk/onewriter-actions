@@ -8,7 +8,7 @@ function buildFrontMatter(inputTitle) {
 	let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 	let datetime = "date: " + date + " " + time;
 
-	// set title for Jekyll front matter
+	// set title for Gatsby front matter
 	let title = "title: \"" + inputTitle + "\""
 
 	// set front matter
